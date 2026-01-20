@@ -23,15 +23,37 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Board;
+namespace BaksDev\Drom\Board\UseCase\Delete;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Board\Entity\DromBoard;
+use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
+use BaksDev\Drom\Board\Messenger\DromBoardMessage;
+use BaksDev\Core\Entity\AbstractHandler;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromBoardBundle extends AbstractBundle
+#[Autoconfigure(public: true)]
+final class DromBoardDeleteMapperHandler extends AbstractHandler
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public function handle(DromBoardDeleteMapperDTO $command): string|DromBoard
+    {
+        $this
+            ->setCommand($command)
+            ->preEventRemove(new DromBoard($command->getCategory()), DromBoardEvent::class);
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+        /** Валидация всех объектов */
+        if($this->validatorCollection->isInvalid())
+        {
+            return $this->validatorCollection->getErrorUniqid();
+        }
 
+        $this->flush();
+
+        /** Отправляем сообщение в шину */
+        $this->messageDispatch->dispatch(
+            message: new DromBoardMessage($this->main->getId(), $this->main->getEvent(), $command->getEvent()),
+            transport: 'drom-board',
+        );
+
+        return $this->main;
+    }
 }

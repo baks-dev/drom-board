@@ -23,15 +23,26 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Board;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Board\BaksDevDromBoardBundle;
+use BaksDev\Drom\Board\Type\DromBoardType;
+use BaksDev\Drom\Board\Type\DromBoardUid;
+use BaksDev\Drom\Board\Type\Event\DromBoardEventType;
+use BaksDev\Drom\Board\Type\Event\DromBoardEventUid;
+use Symfony\Config\DoctrineConfig;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromBoardBundle extends AbstractBundle
-{
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+return static function(DoctrineConfig $doctrine): void {
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    $doctrine->dbal()->type(DromBoardUid::TYPE)->class(DromBoardType::class);
+    $doctrine->dbal()->type(DromBoardEventUid::TYPE)->class(DromBoardEventType::class);
 
-}
+    $emDefault = $doctrine->orm()->entityManager('default')->autoMapping(true);
+
+    $emDefault->mapping('drom-board')
+        ->type('attribute')
+        ->dir(BaksDevDromBoardBundle::PATH.'Entity')
+        ->isBundle(false)
+        ->prefix(BaksDevDromBoardBundle::NAMESPACE.'\\Entity')
+        ->alias('drom-board');
+};

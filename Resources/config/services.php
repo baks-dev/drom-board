@@ -23,15 +23,27 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Board;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Board\BaksDevDromBoardBundle;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromBoardBundle extends AbstractBundle
-{
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+return static function(ContainerConfigurator $configurator) {
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    $services = $configurator->services()
+        ->defaults()
+        ->autowire()
+        ->autoconfigure();
 
-}
+    $NAMESPACE = BaksDevDromBoardBundle::NAMESPACE;
+    $PATH = BaksDevDromBoardBundle::PATH;
+
+    $services->load($NAMESPACE, $PATH)
+        ->exclude([
+            $PATH.'{Entity,Resources,Type}',
+            $PATH.'**'.DIRECTORY_SEPARATOR.'*Message.php',
+            $PATH.'**'.DIRECTORY_SEPARATOR.'*Result.php',
+            $PATH.'**'.DIRECTORY_SEPARATOR.'*DTO.php',
+            $PATH.'**'.DIRECTORY_SEPARATOR.'*Test.php',
+        ]);
+
+};

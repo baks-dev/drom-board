@@ -1,0 +1,22 @@
+{# @var product \BaksDev\Drom\Board\Repository\AllProductsWithMapper\AllProductsWithMapperResult #}
+
+<?xml version="1.0" encoding='UTF-8'?>
+<offers>
+    {% for product in products %}
+        {% set tags = drom_product_transform(product) %}
+
+        {% if tags is not null %}
+            <offer>
+                {% for tag, data in tags %}
+                    <{{ tag }}>
+                    {{ data|raw }}
+                    </{{ tag }}>
+                {% endfor %}
+            </offer>
+        {% endif %}
+    {% endfor %}
+</offers>
+
+
+
+

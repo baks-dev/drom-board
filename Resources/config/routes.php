@@ -23,15 +23,19 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Board;
+use BaksDev\Drom\Board\BaksDevDromBoardBundle;
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+return function(RoutingConfigurator $routes) {
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromBoardBundle extends AbstractBundle
-{
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    $MODULE = BaksDevDromBoardBundle::PATH;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
-
-}
+    $routes->import(
+        $MODULE.'Controller',
+        'attribute',
+        false,
+        $MODULE.implode(DIRECTORY_SEPARATOR, ['Controller', '**', '*Test.php'])
+    )
+        ->prefix(\BaksDev\Core\Type\Locale\Locale::routes())
+        ->namePrefix('drom-board:');
+};

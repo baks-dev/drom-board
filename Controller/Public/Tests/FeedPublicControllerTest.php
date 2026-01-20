@@ -23,15 +23,33 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Board;
+namespace BaksDev\Drom\Board\Controller\Public\Tests;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Users\Profile\UserProfile\Type\Id\UserProfileUid;
+use PHPUnit\Framework\Attributes\Group;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DependencyInjection\Attribute\When;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromBoardBundle extends AbstractBundle
+#[When(env: 'test')]
+#[Group('drom-board')]
+#[Group('drom-board-controller')]
+#[Group('drom-board-repository')]
+#[Group('drom-board-usecase')]
+final class FeedPublicControllerTest extends WebTestCase
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    private const string URL = '/drom-board/%s/feed.xml';
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    /** Доступ по без роли */
+    public function testGuestFiled(): void
+    {
+        $profileUid = $_SERVER['TEST_PROFILE'] ?? UserProfileUid::TEST;
 
+        $url = sprintf(self::URL, $profileUid);
+
+        self::ensureKernelShutdown();
+        $client = self::createClient();
+        $client->request('GET', $url);
+
+        self::assertResponseStatusCodeSame(200);
+    }
 }

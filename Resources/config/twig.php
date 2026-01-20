@@ -23,15 +23,15 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Board;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Board\BaksDevDromBoardBundle;
+use Symfony\Config\TwigConfig;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromBoardBundle extends AbstractBundle
-{
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+return static function(TwigConfig $twig) {
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
-
-}
+    $twig->path(
+        BaksDevDromBoardBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Resources', 'view', '']),
+        'drom-board'
+    );
+};

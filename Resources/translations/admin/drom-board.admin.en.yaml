@@ -1,0 +1,31 @@
+page:
+  index: 'Drom board mapper'
+  new: 'Add mapper'
+  edit: 'Edit mapper'
+  update: 'Update Drom board mapper'
+  delete: 'Delete mapper'
+  get: 'Get new Drom board mapper'
+
+breadcrumb:
+  index: 'Drom board mapper'
+  new: 'Add a Drom board mapper'
+  edit: 'Edit Drom board mapper'
+  update: 'Update Drom board mapper'
+  delete: 'Delete Drom board mapper'
+  restore: 'Restore Drom board mapper'
+
+success:
+  new: 'Drom board mapper has been successfully added'
+  edit: 'Drom board mapper has been successfully updated'
+  update: 'Drom board mapper has been successfully added to the queue for updating'
+  delete: 'Drom board mapper was successfully deleted'
+  restore: 'Drom board mapper has been restored'
+  get: 'Drom board mapper squat update added to queue'
+
+danger:
+  new: '%s: Error adding a Drom board mapper'
+  edit: '%s: Error updating the Drom board mapper'
+  update: '%s: Error updating the Drom board mapper'
+  delete: '%s: Error when deleting Drom board mapper'
+  restore: '%s: Error while restoring Drom board mapper'
+  get: "There's already been an update! Please try again in 5 minutes!"
