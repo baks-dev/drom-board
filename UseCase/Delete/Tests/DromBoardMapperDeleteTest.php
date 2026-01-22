@@ -32,6 +32,7 @@ use BaksDev\Drom\Board\UseCase\Delete\DromBoardDeleteMapperHandler;
 use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperDTO;
 use BaksDev\Drom\Board\UseCase\NewEdit\Elements\DromBoardMapperElementDTO;
 use BaksDev\Drom\Board\UseCase\NewEdit\Tests\DromBoardMapperEditTest;
+use BaksDev\Drom\Products\UseCase\Delete\Tests\DromProductDeleteTest;
 use BaksDev\Products\Category\Type\Id\CategoryProductUid;
 use BaksDev\Products\Category\Type\Section\Field\Id\CategoryProductSectionFieldUid;
 use BaksDev\Products\Category\UseCase\Admin\Delete\Tests\CategoryProductDeleteTest;
@@ -52,8 +53,10 @@ final class DromBoardMapperDeleteTest extends KernelTestCase
     {
         $container = self::getContainer();
 
+
         /** @var EntityManagerInterface $EntityManager */
         $EntityManager = $container->get(EntityManagerInterface::class);
+
 
         /** Тестовый корень */
         $dromBoard = $EntityManager
@@ -62,6 +65,7 @@ final class DromBoardMapperDeleteTest extends KernelTestCase
 
         self::assertNotNull($dromBoard);
 
+
         /** Тестовое активное событие */
         $activeEvent = $EntityManager
             ->getRepository(DromBoardEvent::class)
@@ -69,10 +73,12 @@ final class DromBoardMapperDeleteTest extends KernelTestCase
 
         self::assertNotNull($activeEvent);
 
+
         // проверка редактирования
         $editDTO = new DromBoardMapperDTO();
 
         $activeEvent->getDto($editDTO);
+
 
         /** @var ArrayCollection<int, DromBoardMapperElementDTO> $mapperElements */
         $mapperElements = $editDTO->getMapperElements();
@@ -117,7 +123,12 @@ final class DromBoardMapperDeleteTest extends KernelTestCase
         $EntityManager->flush();
         $EntityManager->clear();
 
+
         /** Удаляем тестовую категорию */
         CategoryProductDeleteTest::tearDownAfterClass();
+
+
+        /** Удаляем тестовый продукт Drom */
+        DromProductDeleteTest::tearDownAfterClass();
     }
 }

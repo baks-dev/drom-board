@@ -27,8 +27,7 @@ namespace BaksDev\Drom\Board\Repository\AllProductsWithMapper\Tests;
 
 use BaksDev\Drom\Board\Repository\AllProductsWithMapper\AllProductsWithMapperInterface;
 use BaksDev\Drom\Board\Repository\AllProductsWithMapper\AllProductsWithMapperResult;
-use BaksDev\Drom\Products\UseCase\NewEdit\Images\Tests\DromProductImagesNewTest;
-use BaksDev\Drom\UseCase\Admin\NewEdit\Tests\DromTokenNewTest;
+use BaksDev\Drom\Board\UseCase\NewEdit\Tests\DromBoardMapperNewTest;
 use BaksDev\Products\Product\Type\Id\ProductUid;
 use BaksDev\Products\Product\Type\Offers\ConstId\ProductOfferConst;
 use BaksDev\Products\Product\Type\Offers\Variation\ConstId\ProductVariationConst;
@@ -46,8 +45,7 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 #[Group('drom-board-repository')]
 class AllProductsWithMapperRepositoryTest extends KernelTestCase
 {
-    #[DependsOnClass(DromTokenNewTest::class)]
-    #[DependsOnClass(DromProductImagesNewTest::class)]
+    #[DependsOnClass(DromBoardMapperNewTest::class)]
     public function testRepository(): void
     {
         /** @var AllProductsWithMapperInterface $AllProductsWithMapper */

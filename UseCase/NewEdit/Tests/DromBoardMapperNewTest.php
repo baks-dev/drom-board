@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\UseCase\NewEdit\Tests;
 
-use BaksDev\Drom\Board\Controller\Admin\Tests\BeforeNewAdminControllerTest;
 use BaksDev\Drom\Board\Entity\DromBoard;
 use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Drom\Board\Entity\Modify\DromBoardModify;
@@ -33,10 +32,10 @@ use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperDTO;
 use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperHandler;
 use BaksDev\Drom\Board\UseCase\NewEdit\Elements\DromBoardMapperElementDTO;
 use BaksDev\Core\Type\Modify\Modify\ModifyActionNew;
+use BaksDev\Drom\Products\UseCase\NewEdit\Tests\DromProductNewTest;
 use BaksDev\Products\Category\Type\Id\CategoryProductUid;
 use BaksDev\Products\Category\Type\Section\Field\Id\CategoryProductSectionFieldUid;
 use Doctrine\ORM\EntityManagerInterface;
-use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
@@ -71,9 +70,13 @@ class DromBoardMapperNewTest extends KernelTestCase
 
         $em->flush();
         $em->clear();
+
+
+        /** Создаем тестовый продукт Drom */
+        DromProductNewTest::setUpBeforeClass();
+        new DromProductNewTest('')->testNew();
     }
 
-    #[DependsOnClass(BeforeNewAdminControllerTest::class)]
     public function testNew(): void
     {
         $newDTO = new DromBoardMapperDTO();

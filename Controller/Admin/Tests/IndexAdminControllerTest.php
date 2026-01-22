@@ -35,7 +35,6 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 #[When(env: 'test')]
 #[Group('drom-board')]
 #[Group('drom-board-controller')]
-#[Group('drom-board-repository')]
 #[Group('drom-board-usecase')]
 final class IndexAdminControllerTest extends WebTestCase
 {

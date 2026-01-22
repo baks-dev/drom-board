@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\UseCase\NewEdit\Tests;
 
-use BaksDev\Drom\Board\Controller\Admin\Tests\NewAdminControllerTest;
 use BaksDev\Drom\Board\Entity\DromBoard;
 use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Drom\Board\Entity\Modify\DromBoardModify;
@@ -48,7 +47,7 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 #[Group('drom-board-usecase')]
 class DromBoardMapperEditTest extends KernelTestCase
 {
-    #[DependsOnClass(NewAdminControllerTest::class)]
+    #[DependsOnClass(DromBoardMapperNewTest::class)]
     public function testEdit(): void
     {
         $container = self::getContainer();
