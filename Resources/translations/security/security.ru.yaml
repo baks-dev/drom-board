@@ -1,0 +1,26 @@
+# Роль
+ROLE_DROM_BOARD:
+  header: 'Drom'
+  name: 'Соотношение свойств для Drom'
+  desc: 'Соотношение свойств для Drom'
+
+# Правила
+ROLE_DROM_BOARD_INDEX:
+  name: 'Просмотр маппера'
+  desc: ''
+
+ROLE_DROM_BOARD_BEFORE_NEW:
+  name: 'Соотношение категорий для маппера'
+  desc: ''
+
+ROLE_DROM_BOARD_NEW:
+  name: 'Добавить маппер'
+  desc: ''
+
+ROLE_DROM_BOARD_EDIT:
+  name: 'Редактировать маппер'
+  desc: ''
+
+ROLE_DROM_BOARD_DELETE:
+  name: 'Удалить маппер'
+  desc: ''

@@ -23,15 +23,20 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Board;
+namespace BaksDev\Drom\Board\Repository\AllCategoryWithMapper;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Products\Category\Entity\CategoryProduct;
+use BaksDev\Products\Category\Type\Id\CategoryProductUid;
+use Generator;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromBoardBundle extends AbstractBundle
+interface AllCategoryWithDromMapperInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /** Соответствие по активной категории */
+    public function onlyActive(): self;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    /** Соответствие по категории */
+    public function forCategory(CategoryProduct|CategoryProductUid $category): self;
 
+    /** Получаем коллекцию категорий, для которых не найдено совпадений с категорией из маппера */
+    public function findAll(): Generator;
 }

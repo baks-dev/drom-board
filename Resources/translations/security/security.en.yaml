@@ -1,0 +1,26 @@
+# Role
+ROLE_DROM_BOARD:
+  header: 'Drom'
+  name: 'Property ratio for Drom'
+  desc: 'Property ratio for Drom'
+
+# Rules
+ROLE_DROM_BOARD_INDEX:
+  name: 'View'
+  desc: ''
+
+ROLE_DROM_BOARD_BEFORE_NEW:
+  name: 'Preview'
+  desc: ''
+
+ROLE_DROM_BOARD_NEW:
+  name: 'Add'
+  desc: ''
+
+ROLE_DROM_BOARD_EDIT:
+  name: 'Edit'
+  desc: ''
+
+ROLE_DROM_BOARD_DELETE:
+  name: 'Delete'
+  desc: ''
