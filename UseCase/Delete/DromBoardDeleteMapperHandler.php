@@ -25,13 +25,13 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\UseCase\Delete;
 
+use BaksDev\Core\Entity\AbstractHandler;
 use BaksDev\Drom\Board\Entity\DromBoard;
 use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Drom\Board\Messenger\DromBoardMessage;
-use BaksDev\Core\Entity\AbstractHandler;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
-#[Autoconfigure(public: true)]
+// #[Autoconfigure(public: true)]
 final class DromBoardDeleteMapperHandler extends AbstractHandler
 {
     public function handle(DromBoardDeleteMapperDTO $command): string|DromBoard
