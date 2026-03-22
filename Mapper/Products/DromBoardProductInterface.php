@@ -36,6 +36,7 @@ interface DromBoardProductInterface
 
     /**
      * Получаем все элементы, относящиеся к определенной категории продукта Drom
+     *
      * @return list<DromBoardElementInterface>
      */
     public function getElements(): array;

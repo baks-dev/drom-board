@@ -30,8 +30,8 @@ use BaksDev\Drom\Board\Repository\AllCategoryWithMapper\AllCategoryWithDromMappe
 use BaksDev\Drom\Board\UseCase\NewEdit\Tests\DromBoardMapperNewTest;
 use BaksDev\Products\Category\Type\Id\CategoryProductUid;
 use PHPUnit\Framework\Attributes\DependsOnClass;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use PHPUnit\Framework\Attributes\Group;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
 #[When(env: 'test')]
@@ -49,9 +49,10 @@ final class AllCategoryWithDromMapperRepositoryTest extends KernelTestCase
             ->onlyActive()
             ->findAll();
 
-        foreach ($result as $item) {
+        foreach($result as $item)
+        {
             self::assertInstanceOf(CategoryProductUid::class, $item);
-//            dd($item);
+            //            dd($item);
 
             return;
         }

@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\UseCase\NewEdit\Tests;
 
+use BaksDev\Core\Type\Modify\Modify\ModifyActionUpdate;
 use BaksDev\Drom\Board\Entity\DromBoard;
 use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Drom\Board\Entity\Modify\DromBoardModify;
@@ -32,7 +33,6 @@ use BaksDev\Drom\Board\Type\Event\DromBoardEventUid;
 use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperDTO;
 use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperHandler;
 use BaksDev\Drom\Board\UseCase\NewEdit\Elements\DromBoardMapperElementDTO;
-use BaksDev\Core\Type\Modify\Modify\ModifyActionUpdate;
 use BaksDev\Products\Category\Type\Id\CategoryProductUid;
 use BaksDev\Products\Category\Type\Section\Field\Id\CategoryProductSectionFieldUid;
 use Doctrine\ORM\EntityManagerInterface;

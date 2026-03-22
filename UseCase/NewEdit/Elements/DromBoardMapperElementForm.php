@@ -92,7 +92,7 @@ final class DromBoardMapperElementForm extends AbstractType
                 'data_class' => DromBoardMapperElementDTO::class,
                 'product_fields' => null,
                 'drom_product' => null,
-            ]
+            ],
         );
     }
 }

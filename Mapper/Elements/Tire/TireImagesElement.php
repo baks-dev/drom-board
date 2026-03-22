@@ -84,21 +84,6 @@ final readonly class TireImagesElement implements DromBoardElementInterface
         return $dromIMG;
     }
 
-    public function element(): string
-    {
-        return self::ELEMENT;
-    }
-
-    public function label(): string
-    {
-        return self::LABEL;
-    }
-
-    public function getProduct(): string
-    {
-        return TireProduct::class;
-    }
-
     /** Формируем массив элементов с изображениями */
     private function transform(?array $images): ?string
     {
@@ -138,5 +123,20 @@ final readonly class TireImagesElement implements DromBoardElementInterface
         }
 
         return $render ?: null;
+    }
+
+    public function element(): string
+    {
+        return self::ELEMENT;
+    }
+
+    public function label(): string
+    {
+        return self::LABEL;
+    }
+
+    public function getProduct(): string
+    {
+        return TireProduct::class;
     }
 }

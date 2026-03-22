@@ -33,7 +33,7 @@ return static function(FrameworkConfig $config) {
     $config
         ->translator()
         ->paths([BaksDevDromBoardBundle::PATH.implode(
-            DIRECTORY_SEPARATOR,
-            ['Resources', 'translations', '']
-        )]); // .'Resources/translations/']);
+                DIRECTORY_SEPARATOR,
+                ['Resources', 'translations', ''],
+            )]); // .'Resources/translations/']);
 };

@@ -51,6 +51,7 @@ interface AllProductsWithMapperInterface
 
     /**
      * Метод получает массив элементов продукции с соотношением свойств
+     *
      * @return Generator<int, AllProductsWithMapperResult>|false
      * */
     public function findAll(): Generator|false;

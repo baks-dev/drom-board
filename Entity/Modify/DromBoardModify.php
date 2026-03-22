@@ -25,12 +25,12 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\Entity\Modify;
 
-use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Core\Entity\EntityEvent;
 use BaksDev\Core\Type\Ip\IpAddress;
 use BaksDev\Core\Type\Modify\Modify\ModifyActionNew;
 use BaksDev\Core\Type\Modify\Modify\ModifyActionUpdate;
 use BaksDev\Core\Type\Modify\ModifyAction;
+use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Users\User\Entity\User;
 use BaksDev\Users\User\Type\Id\UserUid;
 use DateTimeImmutable;

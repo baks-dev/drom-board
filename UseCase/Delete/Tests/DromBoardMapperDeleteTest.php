@@ -49,6 +49,33 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 final class DromBoardMapperDeleteTest extends KernelTestCase
 {
     #[DependsOnClass(DromBoardMapperEditTest::class)]
+    public static function tearDownAfterClass(): void
+    {
+        /** @var EntityManagerInterface $EntityManager */
+        $EntityManager = self::getContainer()->get(EntityManagerInterface::class);
+
+        $events = $EntityManager
+            ->getRepository(DromBoardEvent::class)
+            ->findBy(['category' => CategoryProductUid::TEST]);
+
+        foreach($events as $event)
+        {
+            $EntityManager->remove($event);
+        }
+
+        $EntityManager->flush();
+        $EntityManager->clear();
+
+
+        /** Удаляем тестовую категорию */
+        CategoryProductDeleteTest::tearDownAfterClass();
+
+
+        /** Удаляем тестовый продукт Drom */
+        DromProductDeleteTest::tearDownAfterClass();
+    }
+
+    #[DependsOnClass(DromBoardMapperEditTest::class)]
     public function testDelete(): void
     {
         $container = self::getContainer();
@@ -103,32 +130,5 @@ final class DromBoardMapperDeleteTest extends KernelTestCase
         $DromBoardDeleteMapperHandler = $container->get(DromBoardDeleteMapperHandler::class);
         $deleteDromBoard = $DromBoardDeleteMapperHandler->handle($deleteMapperDTO);
         self::assertTrue($deleteDromBoard instanceof DromBoard);
-    }
-
-    #[DependsOnClass(DromBoardMapperEditTest::class)]
-    public static function tearDownAfterClass(): void
-    {
-        /** @var EntityManagerInterface $EntityManager */
-        $EntityManager = self::getContainer()->get(EntityManagerInterface::class);
-
-        $events = $EntityManager
-            ->getRepository(DromBoardEvent::class)
-            ->findBy(['category' => CategoryProductUid::TEST]);
-
-        foreach($events as $event)
-        {
-            $EntityManager->remove($event);
-        }
-
-        $EntityManager->flush();
-        $EntityManager->clear();
-
-
-        /** Удаляем тестовую категорию */
-        CategoryProductDeleteTest::tearDownAfterClass();
-
-
-        /** Удаляем тестовый продукт Drom */
-        DromProductDeleteTest::tearDownAfterClass();
     }
 }

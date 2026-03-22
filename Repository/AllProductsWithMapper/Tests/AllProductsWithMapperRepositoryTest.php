@@ -76,7 +76,7 @@ class AllProductsWithMapperRepositoryTest extends KernelTestCase
                     {
                         // Вызываем метод
                         $data = $method->invoke($AllProductsWithMapperResult);
-//                        dump($data);
+                        //                        dump($data);
                     }
                 }
             }

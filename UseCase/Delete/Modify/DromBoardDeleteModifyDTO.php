@@ -25,9 +25,9 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\UseCase\Delete\Modify;
 
-use BaksDev\Drom\Board\Entity\Modify\DromBoardModifyInterface;
 use BaksDev\Core\Type\Modify\Modify\ModifyActionDelete;
 use BaksDev\Core\Type\Modify\ModifyAction;
+use BaksDev\Drom\Board\Entity\Modify\DromBoardModifyInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 final readonly class DromBoardDeleteModifyDTO implements DromBoardModifyInterface

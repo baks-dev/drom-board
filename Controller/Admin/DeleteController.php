@@ -25,13 +25,13 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\Controller\Admin;
 
+use BaksDev\Core\Controller\AbstractController;
+use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use BaksDev\Drom\Board\Entity\DromBoard;
 use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Drom\Board\UseCase\Delete\DromBoardDeleteMapperDTO;
 use BaksDev\Drom\Board\UseCase\Delete\DromBoardDeleteMapperForm;
 use BaksDev\Drom\Board\UseCase\Delete\DromBoardDeleteMapperHandler;
-use BaksDev\Core\Controller\AbstractController;
-use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,9 +58,9 @@ final class DeleteController extends AbstractController
             'action' => $this->generateUrl(
                 'drom-board:admin.mapper.delete',
                 [
-                    'id' => $deleteMapperDTO->getEvent()
-                ]
-            )
+                    'id' => $deleteMapperDTO->getEvent(),
+                ],
+            ),
         ]);
 
         $form->handleRequest($request);

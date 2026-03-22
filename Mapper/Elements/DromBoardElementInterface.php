@@ -68,6 +68,7 @@ interface DromBoardElementInterface
 
     /**
      * Возвращает название класса реализации @return class-string|null
+     *
      * @see DromBoardProductInterface
      */
     public function getProduct(): ?string;

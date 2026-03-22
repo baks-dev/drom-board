@@ -38,6 +38,7 @@ final class FeedController extends AbstractController
 {
     /**
      * Отдаем XML прайс-листа
+     *
      * @see https://baza.drom.ru/help/trebovaniya_k_price_listam_po_shinam
      * @see https://baza.drom.ru/help/PriceLists
      */

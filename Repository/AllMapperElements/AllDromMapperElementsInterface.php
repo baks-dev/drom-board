@@ -31,6 +31,7 @@ interface AllDromMapperElementsInterface
 {
     /**
      * Связь категорий продуктов и маппера Drom
+     *
      * @return PaginatorInterface<AllDromMapperElementsResult>
      */
     public function findAll(): PaginatorInterface;

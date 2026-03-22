@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\Repository\AllProductsWithMapper;
 
+use BaksDev\Core\Doctrine\DBALQueryBuilder;
 use BaksDev\Drom\Board\Entity\DromBoard;
 use BaksDev\Drom\Board\Entity\Element\DromBoardMapperElement;
 use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
@@ -36,7 +37,6 @@ use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\Entity\Images\DromProductImage;
 use BaksDev\Drom\Products\Entity\Kit\DromProductKit;
 use BaksDev\Drom\Products\Entity\Profile\DromProductProfile;
-use BaksDev\Core\Doctrine\DBALQueryBuilder;
 use BaksDev\Products\Category\Entity\CategoryProduct;
 use BaksDev\Products\Category\Entity\Info\CategoryProductInfo;
 use BaksDev\Products\Category\Entity\Offers\CategoryProductOffers;
@@ -135,6 +135,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
 
     /**
      * Метод получает массив элементов продукции с соотношением свойств
+     *
      * @return Generator<int, AllProductsWithMapperResult>|false
      * */
     public function findAll(): Generator|false
@@ -165,12 +166,12 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product',
                 DromTokenProfile::class,
                 'drom_token_profile',
-                'drom_token_profile.value = :profile'
+                'drom_token_profile.value = :profile',
             )
             ->setParameter(
                 key: 'profile',
                 value: $this->profile,
-                type: UserProfileUid::TYPE
+                type: UserProfileUid::TYPE,
             );
 
 
@@ -179,7 +180,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
             'drom_token_profile',
             DromToken::class,
             'drom_token',
-            'drom_token.event = drom_token_profile.event'
+            'drom_token.event = drom_token_profile.event',
         );
 
         $dbal
@@ -188,7 +189,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'drom_token',
                 DromTokenKit::class,
                 'drom_kit',
-                'drom_kit.event = drom_token.event'
+                'drom_kit.event = drom_token.event',
             );
 
         $dbal->join(
@@ -202,7 +203,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
             ->setParameter(
                 'status',
                 UserProfileStatusActive::class,
-                UserProfileStatus::TYPE
+                UserProfileStatus::TYPE,
             );
 
         $dbal
@@ -218,7 +219,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
             'product',
             ProductEvent::class,
             'product_event',
-            'product_event.id = product.event'
+            'product_event.id = product.event',
         );
 
 
@@ -232,7 +233,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_active',
                 '
                     product_active.event = product.event AND 
-                    product_active.active IS TRUE'
+                    product_active.active IS TRUE',
             );
 
         $dbal
@@ -240,7 +241,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_event',
                 ProductInfo::class,
                 'product_info',
-                'product_info.product = product.id'
+                'product_info.product = product.id',
             );
 
 
@@ -251,7 +252,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_event',
                 ProductTrans::class,
                 'product_trans',
-                'product_trans.event = product_event.id AND product_trans.local = :local'
+                'product_trans.event = product_event.id AND product_trans.local = :local',
             );
 
         $dbal
@@ -260,7 +261,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_event',
                 ProductDescription::class,
                 'product_desc',
-                'product_desc.event = product_event.id AND product_desc.device = :device '
+                'product_desc.event = product_event.id AND product_desc.device = :device ',
             )
             ->setParameter('device', 'pc');
 
@@ -277,7 +278,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 ProductOffer::class,
                 'product_offer',
                 'product_offer.event = product_event.id'
-                .($this->offerConst instanceof ProductOfferConst ? ' AND product_offer.const = :offer' : '')
+                .($this->offerConst instanceof ProductOfferConst ? ' AND product_offer.const = :offer' : ''),
             )
             ->setParameter('offer', $this->offerConst, ProductOfferConst::TYPE);
 
@@ -289,7 +290,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_offer',
                 CategoryProductOffers::class,
                 'category_offer',
-                'category_offer.id = product_offer.category_offer'
+                'category_offer.id = product_offer.category_offer',
             );
 
         /** Множественные варианты торгового предложения */
@@ -304,7 +305,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 ProductVariation::class,
                 'product_variation',
                 'product_variation.offer = product_offer.id'
-                .($this->variationConst instanceof ProductVariationConst ? ' AND product_variation.const = :variation' : '')
+                .($this->variationConst instanceof ProductVariationConst ? ' AND product_variation.const = :variation' : ''),
             )
             ->setParameter('variation', $this->variationConst, ProductVariationConst::TYPE);
 
@@ -316,7 +317,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_variation',
                 CategoryProductVariation::class,
                 'category_variation',
-                'category_variation.id = product_variation.category_variation'
+                'category_variation.id = product_variation.category_variation',
             );
 
 
@@ -332,7 +333,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 ProductModification::class,
                 'product_modification',
                 'product_modification.variation = product_variation.id'
-                .($this->modificationConst instanceof ProductModificationConst ? ' AND product_modification.const = :modification' : '')
+                .($this->modificationConst instanceof ProductModificationConst ? ' AND product_modification.const = :modification' : ''),
             )
             ->setParameter('modification', $this->modificationConst, ProductModificationConst::TYPE);
 
@@ -344,7 +345,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_modification',
                 CategoryProductModification::class,
                 'category_modification',
-                'category_modification.id = product_modification.category_modification'
+                'category_modification.id = product_modification.category_modification',
             );
 
 
@@ -365,14 +366,14 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_event',
                 ProductCategory::class,
                 'product_category',
-                'product_category.event = product_event.id AND product_category.root = true'
+                'product_category.event = product_event.id AND product_category.root = true',
             );
 
         $dbal->join(
             'product_category',
             CategoryProduct::class,
             'category',
-            'category.id = product_category.category'
+            'category.id = product_category.category',
         );
 
 
@@ -385,7 +386,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'category_info',
                 '
                     category.event = category_info.event AND
-                    category_info.active IS TRUE'
+                    category_info.active IS TRUE',
             );
 
         $dbal
@@ -394,7 +395,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'category',
                 CategoryProductTrans::class,
                 'category_trans',
-                'category_trans.event = category.event AND category_trans.local = :local'
+                'category_trans.event = category.event AND category_trans.local = :local',
             );
 
 
@@ -403,7 +404,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
             'product',
             ProductPrice::class,
             'product_price',
-            'product_price.event = product.event'
+            'product_price.event = product.event',
         )
             ->addGroupBy('product_price.reserve');
 
@@ -413,7 +414,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
             'product_offer',
             ProductOfferPrice::class,
             'product_offer_price',
-            'product_offer_price.offer = product_offer.id'
+            'product_offer_price.offer = product_offer.id',
         );
 
 
@@ -422,7 +423,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
             'product_variation',
             ProductVariationPrice::class,
             'product_variation_price',
-            'product_variation_price.variation = product_variation.id'
+            'product_variation_price.variation = product_variation.id',
         );
 
 
@@ -431,7 +432,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
             'product_modification',
             ProductModificationPrice::class,
             'product_modification_price',
-            'product_modification_price.modification = product_modification.id'
+            'product_modification_price.modification = product_modification.id',
         );
 
 
@@ -452,7 +453,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
 			   THEN product_price.price
 			   
 			   ELSE NULL
-			END AS product_price'
+			END AS product_price',
         );
 
 
@@ -475,7 +476,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
 			   
 			   ELSE NULL
 			   
-			END AS product_currency'
+			END AS product_currency',
         );
 
 
@@ -581,7 +582,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                     )
                     
                 ) AS product_quantity",
-            );
+                );
         }
         $dbal->addSelect('NULL AS product_images');
 
@@ -702,7 +703,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_category',
                 DromBoard::class,
                 'drom_board',
-                'drom_board.id = product_category.category'
+                'drom_board.id = product_category.category',
             );
 
 
@@ -713,7 +714,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'drom_board',
                 DromBoardEvent::class,
                 'drom_board_event',
-                'drom_board_event.id = drom_board.event'
+                'drom_board_event.id = drom_board.event',
             );
 
         $dbal
@@ -721,7 +722,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'drom_board',
                 DromBoardMapperElement::class,
                 'drom_mapper',
-                'drom_mapper.event = drom_board.event'
+                'drom_mapper.event = drom_board.event',
             );
 
         /** Получаем значение из СВОЙСТВ товара */
@@ -732,7 +733,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_property',
                 '
                 product_property.event = product.event AND 
-                product_property.field = drom_mapper.product_field'
+                product_property.field = drom_mapper.product_field',
             );
 
         /** Получаем значение из торговых предложений */
@@ -743,7 +744,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_offer_params',
                 '
                     product_offer_params.id = product_offer.id AND  
-                    product_offer_params.category_offer = drom_mapper.product_field'
+                    product_offer_params.category_offer = drom_mapper.product_field',
             );
 
         /** Получаем значение из вариантов модификации множественного варианта */
@@ -754,7 +755,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_variation_params',
                 '
                     product_variation_params.id = product_variation.id AND 
-                    product_variation_params.category_variation = drom_mapper.product_field'
+                    product_variation_params.category_variation = drom_mapper.product_field',
             );
 
         /** Получаем значение из модификаций множественного варианта */
@@ -765,7 +766,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                 'product_modification_params',
                 '
                     product_modification_params.id = product_modification.id AND 
-                    product_modification_params.category_modification = drom_mapper.product_field'
+                    product_modification_params.category_modification = drom_mapper.product_field',
             );
 
 
@@ -788,7 +789,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                                 END)
                         )
 			) 
-			AS drom_board_mapper"
+			AS drom_board_mapper",
         );
 
 
@@ -875,7 +876,7 @@ final class AllProductsWithMapperRepository implements AllProductsWithMapperInte
                     ELSE NULL
                 END
             ) as drom_product_images
-            "
+            ",
         );
 
         $dbal->allGroupByExclude();

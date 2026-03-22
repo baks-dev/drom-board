@@ -53,11 +53,6 @@ final class TireSeasonElement implements DromBoardElementInterface
         return true;
     }
 
-    public function getDefault(): null
-    {
-        return null;
-    }
-
     public function getHelp(): ?string
     {
         return null;
@@ -83,6 +78,11 @@ final class TireSeasonElement implements DromBoardElementInterface
             TireSeasonEnum::SUMMER->value => 'Летние',
             TireSeasonEnum::ALL->value => 'Всесезонные',
         };
+    }
+
+    public function getDefault(): null
+    {
+        return null;
     }
 
     public function element(): string

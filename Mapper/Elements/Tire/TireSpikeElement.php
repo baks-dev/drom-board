@@ -51,11 +51,6 @@ final class TireSpikeElement implements DromBoardElementInterface
         return true;
     }
 
-    public function getDefault(): ?string
-    {
-        return 'Нешипуемая';
-    }
-
     public function getHelp(): ?string
     {
         return null;
@@ -78,6 +73,11 @@ final class TireSpikeElement implements DromBoardElementInterface
         };
 
         return $match;
+    }
+
+    public function getDefault(): ?string
+    {
+        return 'Нешипуемая';
     }
 
     public function element(): string

@@ -25,8 +25,8 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\Mapper\Elements\Tire;
 
-use BaksDev\Drom\Board\Mapper\Products\TireProduct;
 use BaksDev\Drom\Board\Mapper\Elements\DromBoardElementInterface;
+use BaksDev\Drom\Board\Mapper\Products\TireProduct;
 use BaksDev\Drom\Board\Repository\AllProductsWithMapper\AllProductsWithMapperResult;
 
 /**
@@ -51,11 +51,6 @@ final readonly class TireQuantityElement implements DromBoardElementInterface
         return true;
     }
 
-    public function getDefault(): string
-    {
-        return '1';
-    }
-
     public function getHelp(): null
     {
         return null;
@@ -76,6 +71,11 @@ final readonly class TireQuantityElement implements DromBoardElementInterface
         }
 
         return $quantity;
+    }
+
+    public function getDefault(): string
+    {
+        return '1';
     }
 
     public function element(): string

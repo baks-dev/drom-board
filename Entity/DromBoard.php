@@ -54,23 +54,23 @@ class DromBoard
         $this->id = $categoryProduct instanceof CategoryProduct ? $categoryProduct->getId() : $categoryProduct;
     }
 
-    public function __toString(): string
-    {
-        return (string) $this->id;
-    }
-
     public function getId(): CategoryProductUid
     {
         return $this->id;
     }
 
-    public function setEvent(DromBoardEvent|DromBoardEventUid $event): void
+    public function __toString(): string
     {
-        $this->event = $event instanceof DromBoardEvent ? $event->getId() : $event;
+        return (string) $this->id;
     }
 
     public function getEvent(): ?DromBoardEventUid
     {
         return $this->event;
+    }
+
+    public function setEvent(DromBoardEvent|DromBoardEventUid $event): void
+    {
+        $this->event = $event instanceof DromBoardEvent ? $event->getId() : $event;
     }
 }

@@ -24,6 +24,7 @@ use BaksDev\Products\Category\Type\Section\Field\Id\CategoryProductSectionFieldU
 
 /**
  * Интерфейс, который должны реализовывать DTO, через которые изменяется сущность
+ *
  * @see DromBoardMapperElementDTO
  */
 interface DromBoardMapperElementInterface

@@ -37,7 +37,7 @@ final class DromBoardDeleteMapperForm extends AbstractType
         $builder->add('delete_mapper', SubmitType::class, [
             'label' => 'Delete',
             'label_html' => true,
-            'attr' => ['class' => 'btn-danger']
+            'attr' => ['class' => 'btn-danger'],
         ]);
     }
 

@@ -25,10 +25,10 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\Repository\AllMapperElements;
 
-use BaksDev\Drom\Board\Entity\DromBoard;
-use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Core\Doctrine\DBALQueryBuilder;
 use BaksDev\Core\Services\Paginator\PaginatorInterface;
+use BaksDev\Drom\Board\Entity\DromBoard;
+use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Products\Category\Entity\CategoryProduct;
 use BaksDev\Products\Category\Entity\Cover\CategoryProductCover;
 use BaksDev\Products\Category\Entity\Event\CategoryProductEvent;
@@ -40,6 +40,7 @@ final readonly class AllDromMapperElementsRepository implements AllDromMapperEle
 
     /**
      * Связь категорий продуктов и маппера Drom
+     *
      * @return PaginatorInterface<AllDromMapperElementsResult>
      */
     public function findAll(): PaginatorInterface

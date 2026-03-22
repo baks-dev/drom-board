@@ -29,6 +29,7 @@ use BaksDev\Drom\Board\Type\Event\DromBoardEventUid;
 
 /**
  * Интерфейс, который должны реализовывать все DTO, через которые изменяется сущность
+ *
  * @see DromBoardMapperDTO
  */
 interface DromBoardEventInterface

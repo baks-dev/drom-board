@@ -71,6 +71,7 @@ final class DromBoardMapperForm extends AbstractType
 
             /**
              * Фильтрация элементов (тегов) по категории - Drom
+             *
              * @var list<DromBoardElementInterface>|null $dromElements
              */
             $dromElements = $this->MapperProvider->filterElements($dromBoardMapperDTO->getDrom());
@@ -120,16 +121,7 @@ final class DromBoardMapperForm extends AbstractType
         $builder->add('mapper_new', SubmitType::class, [
             'label' => 'Save',
             'label_html' => true,
-            'attr' => ['class' => 'btn-primary']
-        ]);
-    }
-
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => DromBoardMapperDTO::class,
-            'method' => 'POST',
-            'attr' => ['class' => 'w-100'],
+            'attr' => ['class' => 'btn-primary'],
         ]);
     }
 
@@ -140,6 +132,7 @@ final class DromBoardMapperForm extends AbstractType
     {
         /**
          * Массив с элементами "свойства продукта"
+         *
          * @var list<CategoryProductSectionFieldUid> $productProperties
          */
         $productProperties = $this->PropertyFields
@@ -188,5 +181,14 @@ final class DromBoardMapperForm extends AbstractType
         }
 
         return $productFields;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => DromBoardMapperDTO::class,
+            'method' => 'POST',
+            'attr' => ['class' => 'w-100'],
+        ]);
     }
 }

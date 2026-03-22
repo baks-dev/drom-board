@@ -25,10 +25,10 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\Controller\Admin;
 
-use BaksDev\Drom\Board\UseCase\BeforeNew\DromBoardCategoryMapperDTO;
-use BaksDev\Drom\Board\UseCase\BeforeNew\DromBoardCategoryMapperForm;
 use BaksDev\Core\Controller\AbstractController;
 use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
+use BaksDev\Drom\Board\UseCase\BeforeNew\DromBoardCategoryMapperDTO;
+use BaksDev\Drom\Board\UseCase\BeforeNew\DromBoardCategoryMapperForm;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -59,7 +59,7 @@ final class BeforeNewController extends AbstractController
                 [
                     'localCategory' => $categoryMapperDTO->localCategory,
                     'dromCategory' => $categoryMapperDTO->dromCategory->getProductCategory(),
-                ]
+                ],
             );
         }
 

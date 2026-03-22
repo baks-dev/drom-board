@@ -7,11 +7,11 @@
 
         {% if tags is not null %}
             <offer>
-                {% for tag, data in tags %}
-                    <{{ tag }}>
-                    {{ data|raw }}
-                    </{{ tag }}>
-                {% endfor %}
+            {% for tag, data in tags %}
+                <{{ tag }}>
+                {{ data|raw }}
+                </{{ tag }}>
+            {% endfor %}
             </offer>
         {% endif %}
     {% endfor %}

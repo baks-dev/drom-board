@@ -48,11 +48,6 @@ final class CountryElement implements DromBoardElementInterface
         return true;
     }
 
-    public function getDefault(): null
-    {
-        return null;
-    }
-
     public function getHelp(): ?string
     {
         return null;
@@ -68,6 +63,11 @@ final class CountryElement implements DromBoardElementInterface
         }
 
         return $this->Translator->trans($DromBoardPropertyMapper[self::ELEMENT], [], 'field-country');
+    }
+
+    public function getDefault(): null
+    {
+        return null;
     }
 
     public function element(): string

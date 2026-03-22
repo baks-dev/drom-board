@@ -26,8 +26,8 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\Entity\Element;
 
-use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Core\Entity\EntityEvent;
+use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Products\Category\Type\Section\Field\Id\CategoryProductSectionFieldUid;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;

@@ -40,6 +40,7 @@ final readonly class DromBoardMapperProvider
 
     /**
      * Возвращает генератор для категорий продуктов, который был теггирован symfony tag
+     *
      * @return Traversable<DromBoardProductInterface>
      * @see SweatersAndShirtsProductInterface
      *
@@ -52,6 +53,7 @@ final readonly class DromBoardMapperProvider
 
     /**
      * Возвращает инстанс класса, который был теггирован symfony tag, фильтрованный по названию элемента
+     *
      * @param string $productCategory - название категории от Drom
      */
     public function getProduct(string $productCategory): DromBoardProductInterface
@@ -70,7 +72,9 @@ final readonly class DromBoardMapperProvider
     /**
      * Возвращает массив инстансов классов, которые были теггированы symfony tag, фильтрованные по название категории от
      * Drom
+     *
      * @param string $productCategory - название категории от Drom
+     *
      * @return list<DromBoardElementInterface>
      */
     public function filterElements(string $productCategory): array
@@ -90,6 +94,7 @@ final readonly class DromBoardMapperProvider
     /**
      * Возвращает инстанс класса, который был теггирован symfony tag, фильтрованный по название категории от Drom и
      * названию элемента
+     *
      * @param string $productCategory - название категории от Drom
      * @param string $elementName - название элемента (прим. AdType)
      */

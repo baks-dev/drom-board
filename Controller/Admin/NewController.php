@@ -25,12 +25,12 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\Controller\Admin;
 
+use BaksDev\Core\Controller\AbstractController;
+use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use BaksDev\Drom\Board\Entity\DromBoard;
 use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperDTO;
 use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperForm;
 use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperHandler;
-use BaksDev\Core\Controller\AbstractController;
-use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use BaksDev\Products\Category\Entity\CategoryProduct;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;

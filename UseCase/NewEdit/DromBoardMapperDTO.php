@@ -30,6 +30,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Маппим необходимые поля из сущности
+ *
  * @see DromBoardEvent
  */
 final class DromBoardMapperDTO implements DromBoardEventInterface
@@ -48,6 +49,7 @@ final class DromBoardMapperDTO implements DromBoardEventInterface
 
     /**
      * Коллекция элементов маппера для рендеринга в форме
+     *
      * @var ArrayCollection<DromBoardMapperElementDTO> $mapperElements
      */
     #[Assert\Valid]
@@ -69,24 +71,24 @@ final class DromBoardMapperDTO implements DromBoardEventInterface
         return $this->id;
     }
 
-    public function setCategory(CategoryProductUid|CategoryProduct $category): void
-    {
-        $this->category = $category instanceof CategoryProduct ? $category->getId() : $category;
-    }
-
     public function getCategory(): CategoryProductUid
     {
         return $this->category;
     }
 
-    public function setDrom(string $drom): void
+    public function setCategory(CategoryProductUid|CategoryProduct $category): void
     {
-        $this->drom = $drom;
+        $this->category = $category instanceof CategoryProduct ? $category->getId() : $category;
     }
 
     public function getDrom(): string
     {
         return $this->drom;
+    }
+
+    public function setDrom(string $drom): void
+    {
+        $this->drom = $drom;
     }
 
     /** @return ArrayCollection<DromBoardMapperElementDTO> */

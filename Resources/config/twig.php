@@ -32,6 +32,6 @@ return static function(TwigConfig $twig) {
 
     $twig->path(
         BaksDevDromBoardBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Resources', 'view', '']),
-        'drom-board'
+        'drom-board',
     );
 };

@@ -25,12 +25,12 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\Controller\Admin;
 
+use BaksDev\Core\Controller\AbstractController;
+use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
 use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperDTO;
 use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperForm;
 use BaksDev\Drom\Board\UseCase\NewEdit\DromBoardMapperHandler;
-use BaksDev\Core\Controller\AbstractController;
-use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,8 +58,8 @@ final class EditController extends AbstractController
                 data: $mapperDTO,
                 options: ['action' => $this->generateUrl(
                     'drom-board:admin.mapper.edit',
-                    ['id' => $event->getId()]
-                )]
+                    ['id' => $event->getId()],
+                )],
             )
             ->handleRequest($request);
 

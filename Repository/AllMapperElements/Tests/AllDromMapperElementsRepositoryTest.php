@@ -28,10 +28,10 @@ namespace BaksDev\Drom\Products\Repository\AllDromProductsByProfile\Tests;
 use BaksDev\Drom\Board\Repository\AllMapperElements\AllDromMapperElementsInterface;
 use BaksDev\Drom\Board\Repository\AllMapperElements\AllDromMapperElementsRepository;
 use BaksDev\Drom\Board\Repository\AllMapperElements\AllDromMapperElementsResult;
+use PHPUnit\Framework\Attributes\Group;
 use ReflectionClass;
 use ReflectionMethod;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use PHPUnit\Framework\Attributes\Group;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
 #[When(env: 'test')]
@@ -48,7 +48,8 @@ final class AllDromMapperElementsRepositoryTest extends KernelTestCase
             ->findAll()
             ->getData();
 
-        foreach ($result as $item) {
+        foreach($result as $item)
+        {
             self::assertInstanceOf(AllDromMapperElementsResult::class, $item);
 
             // Вызываем все геттеры
@@ -62,7 +63,7 @@ final class AllDromMapperElementsRepositoryTest extends KernelTestCase
                 {
                     // Вызываем метод
                     $data = $method->invoke($item);
-//                    dump($data);
+                    //                    dump($data);
                 }
             }
 

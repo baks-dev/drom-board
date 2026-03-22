@@ -26,11 +26,11 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Board\Entity\Event;
 
+use BaksDev\Core\Entity\EntityEvent;
 use BaksDev\Drom\Board\Entity\DromBoard;
 use BaksDev\Drom\Board\Entity\Element\DromBoardMapperElement;
 use BaksDev\Drom\Board\Entity\Modify\DromBoardModify;
 use BaksDev\Drom\Board\Type\Event\DromBoardEventUid;
-use BaksDev\Core\Entity\EntityEvent;
 use BaksDev\Products\Category\Type\Id\CategoryProductUid;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -107,15 +107,15 @@ class DromBoardEvent extends EntityEvent
         throw new InvalidArgumentException(sprintf('Class %s interface error', $dto::class));
     }
 
-    public function getId(): DromBoardEventUid
-    {
-        return $this->id;
-    }
-
     /** Сеттер для корневой сущности, к которой относится данное событие */
     public function setMain(DromBoard|CategoryProductUid $main): void
     {
         $this->category = $main instanceof DromBoard ? $main->getId() : $main;
+    }
+
+    public function getId(): DromBoardEventUid
+    {
+        return $this->id;
     }
 
     public function getCategory(): CategoryProductUid

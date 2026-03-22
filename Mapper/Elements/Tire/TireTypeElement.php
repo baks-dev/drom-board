@@ -53,11 +53,6 @@ final class TireTypeElement implements DromBoardElementInterface
         return true;
     }
 
-    public function getDefault(): null
-    {
-        return null;
-    }
-
     public function getHelp(): ?string
     {
         return null;
@@ -80,8 +75,13 @@ final class TireTypeElement implements DromBoardElementInterface
         return match ($DromBoardPropertyMapper[self::ELEMENT])
         {
             TireCarTypeEnum::PASSENGER->value, TireCarTypeEnum::JEEP->value => 'Легковая',
-            TireCarTypeEnum::BUS->value, TireCarTypeEnum::TRUCK->value => 'Грузовая'
+            TireCarTypeEnum::BUS->value, TireCarTypeEnum::TRUCK->value => 'Грузовая',
         };
+    }
+
+    public function getDefault(): null
+    {
+        return null;
     }
 
     public function element(): string
